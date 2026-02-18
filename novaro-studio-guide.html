@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visit Novaro Studio - Manchester</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #FF3B5C;
+            --dark: #0A0A0A;
+            --light: #FFFFFF;
+            --gray: #6B7280;
+            --gray-light: #F3F4F6;
+            --accent: #10B981;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--light);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--dark) 0%, #1a1a1a 100%);
+            color: var(--light);
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(255, 59, 92, 0.1), transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero .accent {
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+
+        .address-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 30px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .address-card h3 {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .address-card .address {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .what3words {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary);
+            color: var(--light);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s;
+        }
+
+        .what3words:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        section:nth-child(even) {
+            background: var(--gray-light);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 15px;
+            letter-spacing: -0.02em;
+        }
+
+        .section-header p {
+            font-size: 1.125rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Street View Section */
+        .streetview-container {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            margin-bottom: 40px;
+        }
+
+        .streetview-container iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            display: block;
+        }
+
+        .entrance-note {
+            background: var(--light);
+            border-left: 4px solid var(--primary);
+            padding: 20px 30px;
+            border-radius: 12px;
+            margin-top: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .entrance-note h4 {
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+
+        /* Directions */
+        .directions-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .direction-card {
+            background: var(--light);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .direction-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            font-size: 1.25rem;
+        }
+
+        .steps {
+            list-style: none;
+        }
+
+        .steps li {
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .steps li:last-child {
+            border-bottom: none;
+        }
+
+        .steps li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .time-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--light);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        /* Map Container */
+        .map-container {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            height: 500px;
+            margin-top: 40px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Amenities Grid */
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .amenity-card {
+            background: var(--light);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .amenity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .amenity-card h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .amenity-card .emoji {
+            font-size: 1.75rem;
+        }
+
+        .amenity-list {
+            list-style: none;
+        }
+
+        .amenity-list li {
+            padding: 8px 0;
+            color: var(--gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .amenity-list li strong {
+            color: var(--dark);
+        }
+
+        .distance {
+            font-size: 0.875rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Parking Section */
+        .parking-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .parking-card {
+            background: var(--light);
+            padding: 30px;
+            border-radius: 16px;
+            border: 2px solid var(--gray-light);
+            transition: border-color 0.3s;
+        }
+
+        .parking-card:hover {
+            border-color: var(--primary);
+        }
+
+        .parking-card h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .parking-card .location {
+            color: var(--gray);
+            margin-bottom: 15px;
+        }
+
+        .parking-info {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            color: var(--gray);
+            font-size: 0.875rem;
+        }
+
+        .info-value {
+            font-weight: 600;
+        }
+
+        /* Quick Info Section */
+        .quick-info {
+            background: #000000 !important;
+            color: var(--light);
+            padding: 60px 0;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .info-item h4 {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .info-item p {
+            font-size: 1.125rem;
+            line-height: 1.8;
+        }
+
+        .info-item a {
+            color: var(--light);
+            text-decoration: underline;
+            transition: color 0.3s;
+        }
+
+        .info-item a:hover {
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background: #000000 !important;
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 80px 0 60px;
+            }
+
+            .directions-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .streetview-container iframe,
+            .map-container {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4gPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNTYiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAxNTYgMzIiIGZpbGw9Im5vbmUiPjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMF83NV81NikiPjxwYXRoIGQ9Ik0wIDAuNjc0NDhINi43OTUxNlY0LjQ0NDI5QzcuNTY3NTggMy4wMTk3NyA4LjcwMDExIDEuOTIyNjkgMTAuMTkyNyAxLjE1MzA1QzExLjY4NTQgMC4zODYyMTcgMTMuMzg5NiAwIDE1LjMwNTYgMEMxNy40NzcyIDAgMTkuNDMxNiAwLjQ4Njk2OSAyMS4xNjM0IDEuNDYzN0MyMi44OTUyIDIuNDQwNDQgMjQuMjM5NCAzLjgwODk5IDI1LjE5NiA1LjU2OTM2QzI2LjE1MjYgNy4zMzI1MiAyNi42MzM2IDkuMzM5MTYgMjYuNjMzNiAxMS41ODkzVjMxLjI3NzlIMTkuMzk1OVYxMy4zMzI5QzE5LjM5NTkgMTEuMzQ1OCAxOC44MzUxIDkuNzUzMzcgMTcuNzEwOCA4LjU1Mjc0QzE2LjU4NjYgNy4zNTIxMSAxNS4xMjE0IDYuNzUzMTkgMTMuMzE4MiA2Ljc1MzE5QzExLjUxNDkgNi43NTMxOSAxMC4wNDk4IDcuMzU0OTEgOC45MjU1MiA4LjU1Mjc0QzcuODAxMjQgOS43NTMzNyA3LjI0MDQ3IDExLjM0NTggNy4yNDA0NyAxMy4zMzI5VjMxLjI3NzlIMFYwLjY3NDQ4WiIgZmlsbD0id2hpdGUiPjwvcGF0aD48cGF0aCBkPSJNMzQuODM2MiAyOS45MjA1QzMyLjQwNjIgMjguNTMyNCAzMC40NzkzIDI2LjYyMDkgMjkuMDYzNiAyNC4xODMyQzI3LjY0NTIgMjEuNzQ1NiAyNi45MzYgMTkuMDI4MSAyNi45MzYgMTYuMDI3OUMyNi45MzYgMTMuMDI3NyAyNy42MzQyIDEwLjMxMDIgMjkuMDM2MSA3Ljg2OTc4QzMwLjQzNTMgNS40MzIxNCAzMi4zNTEyIDMuNTIwNjQgMzQuNzgxMiAyLjEzMjVDMzcuMjEzOSAwLjc0NDM2MyAzOS45MDIzIDAuMDUwMjkzIDQyLjg0OTEgMC4wNTAyOTNDNDUuNzk1OSAwLjA1MDI5MyA0OC40MjEgMC43NDQzNjMgNTAuODMxNyAyLjEzMjVDNTMuMjQyNSAzLjUyMDY0IDU1LjE1ODQgNS40MzIxNCA1Ni41NzY4IDcuODY5NzhDNTcuOTk1MyAxMC4zMDc0IDU4LjcwNDUgMTMuMDI3NyA1OC43MDQ1IDE2LjAyNzlDNTguNzA0NSAxOS4wMjgxIDU3Ljk5NTMgMjEuODA0NCA1Ni41NzY4IDI0LjI0MkM1NS4xNTg0IDI2LjY3OTYgNTMuMjM0MiAyOC41ODI3IDUwLjgwNDMgMjkuOTUxM0M0OC4zNzQzIDMxLjMxOTggNDUuNzIxNiAzMi4wMDU1IDQyLjg0OTEgMzIuMDA1NUMzOS45NzY1IDMyLjAwNTUgMzcuMjY4OSAzMS4zMTE0IDM0LjgzNjIgMjkuOTIzM1YyOS45MjA1Wk0zNi43OTg5IDIyLjYzNTZDMzguMzYzIDI0LjM3OTEgNDAuMzgwNiAyNS4yNTIzIDQyLjg0OTEgMjUuMjUyM0M0NC40MzI0IDI1LjI1MjMgNDUuODUwOCAyNC44NTc3IDQ3LjEwNDMgMjQuMDcxM0M0OC4zNTUgMjMuMjg0OSA0OS4zNDE5IDIyLjE4NzggNTAuMDU5MyAyMC43OEM1MC43NzY4IDE5LjM3MjMgNTEuMTM2OSAxNy43OTExIDUxLjEzNjkgMTYuMDI3OUM1MS4xMzY5IDE0LjI2NDcgNTAuNzc2OCAxMi43MzY3IDUwLjA1OTMgMTEuMzMxN0M0OS4zNDE5IDkuOTI2OCA0OC4zNTUgOC44MTg1MyA0Ny4xMDQzIDguMDEyNTFDNDUuODUwOCA3LjIwNjQ5IDQ0LjQzMjQgNi44MDM0OCA0Mi44NDkxIDYuODAzNDhDNDEuMjY1NyA2LjgwMzQ4IDM5Ljc4MTQgNy4yMDY0OSAzOC41MTE0IDguMDEyNTFDMzcuMjQxNCA4LjgxODUzIDM2LjI0NjMgOS45MTU2MSAzNS41Mjg5IDExLjMwMzdDMzQuODExNCAxMi42OTE5IDM0LjQ1MTMgMTQuMjY3NSAzNC40NTEzIDE2LjAyNzlDMzQuNDUxMyAxOC42OTIyIDM1LjIzNDggMjAuODk0OCAzNi43OTg5IDIyLjYzODRWMjIuNjM1NloiIGZpbGw9IiNGRTFFNTMiPjwvcGF0aD48cGF0aCBkPSJNNTQuODMxMyAwLjcyNTA5OEg2Mi43MzE1TDY5Ljg1OTMgMjAuNjkzNkw3Ni45ODcgMC43MjUwOThIODQuODg3Mkw3My4wNjQ0IDMxLjMyNThINjYuNjU0MUw1NC44MzEzIDAuNzI1MDk4WiIgZmlsbD0id2hpdGUiPjwvcGF0aD48cGF0aCBkPSJNODMuOTE5NyAyOS42Mzc4QzgyLjA1ODcgMjguMDYyMiA4MS4xMjk2IDI1LjkyNCA4MS4xMjk2IDIzLjIyNjFDODEuMTI5NiAyMC41MjgyIDgxLjk5NTUgMTguNTAxOSA4My43MjcyIDE2LjgxNDNDODUuNDU5IDE1LjEyNjcgODguMDUzOSAxNC4wMDE3IDkxLjUxNzUgMTMuNDM5MUwxMDAuNDY4IDExLjk3NTRWMTAuOTYyM0MxMDAuNDY4IDkuNjEzMzUgOTkuOTYxOSA4LjUwNzg4IDk4Ljk0NzYgNy42NDMwOUM5Ny45MzMzIDYuNzgxMSA5Ni42MDAxIDYuMzUwMSA5NC45NDI2IDYuMzUwMUM5My4zOTQ5IDYuMzUwMSA5Mi4wMjMzIDYuNzcyNyA5MC44Mjc1IDcuNjE1MUM4OS42MjkgOC40NjAzIDg4Ljc1NDkgOS41NzQxNyA4OC4yMDI0IDEwLjk2MjNMODIuMjg5NiA4LjAzNzdDODMuMTc0NyA1LjYzOTI0IDg0Ljc5MzggMy43MDUzNiA4Ny4xNTIzIDIuMjQ0NDVDODkuNTA4MSAwLjc4MDc0NiA5Mi4xOTkyIDAuMDUwMjkzIDk1LjIyMDIgMC4wNTAyOTNDOTcuNjUwMiAwLjA1MDI5MyA5OS44MTM1IDAuNTA5Mjc1IDEwMS43MTMgMS40MjcyNEMxMDMuNjEgMi4zNDggMTA1LjA4MyAzLjY0MDk5IDEwNi4xMzMgNS4zMDg5OUMxMDcuMTgzIDYuOTc3IDEwNy43MDggOC44NjMzMSAxMDcuNzA4IDEwLjk2MjNWMzEuMzI1NEgxMDAuODU4VjI4LjA2MjJDOTguNDk5NiAzMC42ODczIDk1LjM2ODYgMzEuOTk5OSA5MS40NjUyIDMxLjk5OTlDODguMjk1OCAzMS45OTk5IDg1Ljc4MzQgMzEuMjEzNSA4My45MjI0IDI5LjYzNzhIODMuOTE5N1pNODkuODA0OSAyNS40NDgyQzkwLjU3NzQgMjYuMDY2NyA5MS41NzI1IDI2LjM3NzQgOTIuNzg3NCAyNi4zNzc0Qzk1LjAzMzMgMjYuMzc3NCA5Ni44NzUgMjUuNjU1MyA5OC4zMTI2IDI0LjIxMTJDOTkuNzUwMyAyMi43NjcxIDEwMC40NjggMjAuOTc2IDEwMC40NjggMTguODM3OFYxNy42MDA4TDkyLjg5NzQgMTguODkzN0M5MS40NTk4IDE5LjE5MzIgOTAuMzkzMiAxOS42NzE4IDg5LjY5MjIgMjAuMzI2N0M4OC45OTEzIDIwLjk4NDMgODguNjQyMiAyMS44NTQ3IDg4LjY0MjIgMjIuOTQzNEM4OC42NDIyIDI0LjAzMjEgODkuMDI5OCAyNC44MjY5IDg5LjgwMjIgMjUuNDQ1NEw4OS44MDQ5IDI1LjQ0ODJaIiBmaWxsPSJ3aGl0ZSI+PC9wYXRoPjxwYXRoIGQ9Ik0xMDguMjYzIDMxLjMyNTNWMjAuMzY4NUMxMDguMjYzIDE4Ljg0MDQgMTA4LjI1IDE3LjMxMjQgMTA4LjI1MiAxNS43ODQzQzEwOC4yNTIgMTMuODU4OCAxMDguMTQ1IDExLjk5MjEgMTA5LjA4NSAxMC4yNTEzQzEwOS42NDEgOS4yMjQyMSAxMTAuNDIxIDguMzE3NDQgMTExLjQwNSA3LjY5ODkzQzExMi4yODUgNy4xNDc1OSAxMTMuMjk0IDYuODQ4MTMgMTE0LjMxOSA2Ljc2OTc3SDExNy44MTNWMC4zNjkyMUMxMTcuODEzIDAuMjQwNDcxIDExNS40MDggMC4zODg4MDEgMTE1LjIzMiAwLjM5NzE5N0MxMTIuOTU5IDAuNTIzMTM3IDExMC44MzkgMC45NjI1MjggMTA4Ljk5NSAyLjQwMzg0QzEwNy43MzMgMy4zODg5OCAxMDYuODI5IDQuNzYzMTIgMTA2LjU2MiA2LjM3NTE2QzEwNS43MDcgMTEuNTEwNyAxMDYuNTYyIDMxLjMyMjUgMTA2LjU2MiAzMS4zMjI1SDEwOC4yNjlMMTA4LjI2MyAzMS4zMjUzWiIgZmlsbD0id2hpdGUiPjwvcGF0aD48cGF0aCBkPSJNMTI0LjgzOSAyOS4zNDk5QzEyMi41NzQgMjcuOTgxMyAxMjAuNzg3IDI2LjEwNjIgMTE5LjQ3OSAyMy43MjQ1QzExOC4xNyAyMS4zNDI5IDExNy41MTkgMTguNjg5NyAxMTcuNTE5IDE1Ljc2NTFDMTE3LjUxOSAxMi44NDA1IDExOC4xNjIgMTAuMTg3NCAxMTkuNDUxIDcuODA1NzFDMTIwLjc0IDUuNDI0MDQgMTIyLjUxOSAzLjU1NzMzIDEyNC43ODQgMi4yMDgzN0MxMjcuMDQ5IDAuODU5NDA3IDEyOS41ODEgMC4xODIxMjkgMTMyLjM4MiAwLjE4MjEyOUMxMzUuMTgzIDAuMTgyMTI5IDEzNy43MDQgMC44NTY2MDggMTM5Ljk1MiAyLjIwODM3QzE0Mi4xOTggMy41NTczMyAxNDMuOTY2IDUuNDI0MDQgMTQ1LjI1NyA3LjgwNTcxQzE0Ni41NDcgMTAuMTg3NCAxNDcuMTkzIDEyLjg0MDUgMTQ3LjE5MyAxNS43NjUxQzE0Ny4xOTMgMTguNjg5NyAxNDYuNTM4IDIxLjM5ODggMTQ1LjIzIDIzLjc4MDVDMTQzLjkyMiAyNi4xNjIyIDE0Mi4xMzUgMjguMDI4OSAxMzkuODcgMjkuMzc3OUMxMzcuNjA1IDMwLjcyNjggMTM1LjEwOSAzMS40MDQxIDEzMi4zODIgMzEuNDA0MUMxMjkuNjU1IDMxLjQwNDEgMTI3LjEwNCAzMC43MjEyIDEyNC44MzkgMjkuMzQ5OVpNMTIyLjU0NiAyMi4wMDlDMTIzLjU0MiAyMy44ODQxIDEyNC45MDIgMjUuMzY0NiAxMjYuNjM0IDI2LjQ1MzJDMTI4LjM2NiAyNy41NDE5IDEzMC4yODIgMjguMDg0OSAxMzIuMzc5IDI4LjA4NDlDMTM0LjQ3NiAyOC4wODQ5IDEzNi4zMzcgMjcuNTQxOSAxMzguMDY5IDI2LjQ1MzJDMTM5LjgwMSAyNS4zNjc0IDE0MS4xNjQgMjMuODg0MSAxNDIuMTU3IDIyLjAwOUMxNDMuMTUyIDIwLjEzMzkgMTQzLjY0OSAxOC4wNTE2IDE0My42NDkgMTUuNzY1MUMxNDMuNjQ5IDEzLjQ3ODYgMTQzLjE1MiAxMS4zOTY0IDE0Mi4xNTcgOS41MjEyOUMxNDEuMTYyIDcuNjQ2MTggMTM5LjgwOSA2LjE3NDA4IDEzOC4wOTcgNS4xMDQ5OUMxMzYuMzg0IDQuMDM1OSAxMzQuNDc2IDMuNTAxMzUgMTMyLjM3OSAzLjUwMTM1QzEzMC4yODIgMy41MDEzNSAxMjguMzYzIDQuMDM1OSAxMjYuNjM0IDUuMTA0OTlDMTI0LjkwMiA2LjE3NDA4IDEyMy41MzkgNy42NDYxOCAxMjIuNTQ2IDkuNTIxMjlDMTIxLjU1MSAxMS4zOTY0IDEyMS4wNTQgMTMuNDc4NiAxMjEuMDU0IDE1Ljc2NTFDMTIxLjA1NCAxOC4wNTE2IDEyMS41NTEgMjAuMTMzOSAxMjIuNTQ2IDIyLjAwOVoiIGZpbGw9IiNGRTFFNTMiPjwvcGF0aD48cGF0aCBkPSJNMTMyLjM1MiAyNi4zNTIxQzEzNy42NTYgMjYuMzUyMSAxNDEuOTU2IDIxLjYyMiAxNDEuOTU2IDE1Ljc4NzFDMTQxLjk1NiA5Ljk1MjI3IDEzNy42NTYgNS4yMjIxNyAxMzIuMzUyIDUuMjIyMTdDMTI3LjA0NyA1LjIyMjE3IDEyMi43NDcgOS45NTIyNyAxMjIuNzQ3IDE1Ljc4NzFDMTIyLjc0NyAyMS42MjIgMTI3LjA0NyAyNi4zNTIxIDEzMi4zNTIgMjYuMzUyMVoiIGZpbGw9IiNGRTFFNTMiPjwvcGF0aD48cGF0aCBkPSJNMTUxLjgyMiAzMS4xNjg2QzE1NC4xMjkgMzEuMTY4NiAxNTYgMjkuMjY0IDE1NiAyNi45MTQ2QzE1NiAyNC41NjUyIDE1NC4xMjkgMjIuNjYwNiAxNTEuODIyIDIyLjY2MDZDMTQ5LjUxNCAyMi42NjA2IDE0Ny42NDMgMjQuNTY1MiAxNDcuNjQzIDI2LjkxNDZDMTQ3LjY0MyAyOS4yNjQgMTQ5LjUxNCAzMS4xNjg2IDE1MS44MjIgMzEuMTY4NloiIGZpbGw9IndoaXRlIj48L3BhdGg+PC9nPjxkZWZzPjxjbGlwUGF0aCBpZD0iY2xpcDBfNzVfNTYiPjxyZWN0IHdpZHRoPSIxNTYiIGhlaWdodD0iMzIiIGZpbGw9IndoaXRlIj48L3JlY3Q+PC9jbGlwUGF0aD48L2RlZnM+PC9zdmc+IA==" alt="Novaro" style="height: 40px; margin-bottom: 30px;">
+                <h1>Welcome to the <span class="accent">Studio</span></h1>
+                <p>Your complete guide to visiting our Manchester headquarters - everything you need for a smooth visit.</p>
+                
+                <div class="address-card">
+                    <h3>Studio Address</h3>
+                    <div class="address">31-33 Reedham House<br>King Street West<br>Manchester M3 2PW</div>
+                    <a href="https://what3words.com/index.global.issued" target="_blank" class="what3words">
+                        <span>///</span> index.global.issued
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Street View Section -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2>Find the Entrance</h2>
+                <p>Use this Street View to identify the building and locate parking</p>
+            </div>
+
+            <div class="streetview-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!4v1708266000000!6m8!1m7!1sE1xJKpq13BbDs_25uvnzOg!2m2!1d53.48168958780249!2d-2.250137449055844!3f11.27!4f-1.06!5f0.7820865974627469" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+
+            <div class="entrance-note">
+                <h4>🚪 Important: Two Entrances</h4>
+                <p>The building has two entrances on King Street West. Look for Reedham House signage. We're located in the main building - if you're unsure which entrance, call us on arrival.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Directions Section -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2>Getting Here</h2>
+                <p>Easy access from Manchester city centre</p>
+            </div>
+
+            <div class="directions-grid">
+                <div class="direction-card">
+                    <h3>
+                        <span class="icon">🚊</span>
+                        From Piccadilly Tram Station
+                    </h3>
+                    <ul class="steps">
+                        <li>Exit Piccadilly tram station onto Piccadilly Gardens</li>
+                        <li>Walk west along Market Street towards Deansgate</li>
+                        <li>Turn right onto King Street</li>
+                        <li>Continue as King Street becomes King Street West</li>
+                        <li>Reedham House is on your right, just past the junction with Quay Street</li>
+                    </ul>
+                    <span class="time-badge">⏱️ 12-15 min walk</span>
+                </div>
+
+                <div class="direction-card">
+                    <h3>
+                        <span class="icon">🚗</span>
+                        By Car
+                    </h3>
+                    <ul class="steps">
+                        <li>From A57(M) take exit for Deansgate/City Centre</li>
+                        <li>Follow signs for A56 Chester Road</li>
+                        <li>Turn right onto King Street West</li>
+                        <li>Reedham House is approximately 100m on your left</li>
+                        <li><strong>Free parking available on-site</strong> - please let us know ahead of time to reserve</li>
+                    </ul>
+                    <span class="time-badge">🅿️ Free parking on-site</span>
+                </div>
+            </div>
+
+            <!-- Metrolink Stations -->
+            <div style="margin-top: 60px;">
+                <h3 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 30px; text-align: center;">Nearest Metrolink Stations</h3>
+                <div class="directions-grid">
+                    <div class="direction-card">
+                        <h3>
+                            <span class="icon">🚊</span>
+                            Deansgate-Castlefield
+                        </h3>
+                        <ul class="steps">
+                            <li>Exit the station and head north on Deansgate</li>
+                            <li>Turn right onto King Street West</li>
+                            <li>Reedham House is 200m ahead on your right</li>
+                        </ul>
+                        <span class="time-badge">⏱️ 5 min walk</span>
+                        <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--gray-light);">
+                            <p style="font-size: 0.875rem; color: var(--gray);"><strong>Lines:</strong> Altrincham, East Didsbury, Airport</p>
+                        </div>
+                    </div>
+
+                    <div class="direction-card">
+                        <h3>
+                            <span class="icon">🚊</span>
+                            St Peter's Square
+                        </h3>
+                        <ul class="steps">
+                            <li>Exit towards Peter Street/Mosley Street</li>
+                            <li>Walk west on Mosley Street</li>
+                            <li>Turn right onto King Street, continue to King Street West</li>
+                            <li>Reedham House is on your right</li>
+                        </ul>
+                        <span class="time-badge">⏱️ 8 min walk</span>
+                        <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--gray-light);">
+                            <p style="font-size: 0.875rem; color: var(--gray);"><strong>Lines:</strong> All lines except Airport</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="directions-grid" style="margin-top: 30px;">
+                    <div class="direction-card">
+                        <h3>
+                            <span class="icon">🚊</span>
+                            Exchange Square
+                        </h3>
+                        <ul class="steps">
+                            <li>Exit towards Corporation Street</li>
+                            <li>Walk south on Corporation Street</li>
+                            <li>Turn right onto Cross Street</li>
+                            <li>Continue onto King Street, then King Street West</li>
+                        </ul>
+                        <span class="time-badge">⏱️ 10 min walk</span>
+                        <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--gray-light);">
+                            <p style="font-size: 0.875rem; color: var(--gray);"><strong>Lines:</strong> Eccles, Altrincham (via Eccles), East Didsbury</p>
+                        </div>
+                    </div>
+
+                    <div class="direction-card">
+                        <h3>
+                            <span class="icon">🚊</span>
+                            Piccadilly Gardens
+                        </h3>
+                        <ul class="steps">
+                            <li>Exit onto Piccadilly Gardens</li>
+                            <li>Walk west along Market Street</li>
+                            <li>Turn right onto King Street, continue to King Street West</li>
+                            <li>Reedham House is on your right past Quay Street</li>
+                        </ul>
+                        <span class="time-badge">⏱️ 12 min walk</span>
+                        <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--gray-light);">
+                            <p style="font-size: 0.875rem; color: var(--gray);"><strong>Lines:</strong> Bury, Rochdale, Oldham & Rochdale via Oldham, Ashton-under-Lyne</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d2374.441644!2d-2.2526!3d53.4817!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0x487bb1bcf8a96ff5%3A0x9d3cf7bb2d8e57e!2sPiccadilly%20Gardens%2C%20Manchester!3m2!1d53.4807593!2d-2.236881!4m5!1s0x487bb1a3c1e8a3b7%3A0x7e8a3b7c1e8a3b7!2s31-33%20King%20Street%20West%2C%20Manchester%20M3%202PW!3m2!1d53.4817!2d-2.2504!5e0!3m2!1sen!2suk!4v1708266000000!5m2!1sen!2suk" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Parking Section -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2>Parking Options</h2>
+                <p>Convenient parking locations within walking distance</p>
+            </div>
+
+            <div class="parking-options">
+                <div class="parking-card" style="border: 2px solid var(--primary); position: relative;">
+                    <div style="position: absolute; top: -12px; right: 20px; background: var(--primary); color: var(--light); padding: 4px 16px; border-radius: 20px; font-size: 0.875rem; font-weight: 600;">RECOMMENDED</div>
+                    <h4>🅿️ Free Studio Parking</h4>
+                    <p class="location">On-site at Reedham House</p>
+                    <div class="parking-info">
+                        <div class="info-row">
+                            <span class="info-label">Distance</span>
+                            <span class="info-value">At the building</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Cost</span>
+                            <span class="info-value" style="color: var(--accent); font-weight: 700;">FREE</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Booking Required</span>
+                            <span class="info-value">Yes - Contact ahead</span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--gray-light);">
+                        <p style="font-size: 0.875rem; color: var(--gray);"><strong>Please let us know in advance</strong> so we can reserve a parking space for you.</p>
+                    </div>
+                </div>
+
+                <div class="parking-card">
+                    <h4>Q-Park Deansgate</h4>
+                    <p class="location">Longworth Street, M3 4EQ</p>
+                    <div class="parking-info">
+                        <div class="info-row">
+                            <span class="info-label">Distance</span>
+                            <span class="info-value">3 min walk</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Approx. Cost</span>
+                            <span class="info-value">£2-3/hour</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Type</span>
+                            <span class="info-value">Multi-storey</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="parking-card">
+                    <h4>NCP Blackfriars Street</h4>
+                    <p class="location">Blackfriars Street, M3 5BQ</p>
+                    <div class="parking-info">
+                        <div class="info-row">
+                            <span class="info-label">Distance</span>
+                            <span class="info-value">5 min walk</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Approx. Cost</span>
+                            <span class="info-value">£2.50/hour</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Type</span>
+                            <span class="info-value">Multi-storey</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EV Charging -->
+            <div style="margin-top: 60px;">
+                <h3 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 30px; text-align: center;">⚡ EV Charging Nearby</h3>
+                <div class="parking-options">
+                    <div class="parking-card">
+                        <h4>Spinningfields Car Park</h4>
+                        <p class="location">1 Hardman Square, M3 3EB</p>
+                        <div class="parking-info">
+                            <div class="info-row">
+                                <span class="info-label">Distance</span>
+                                <span class="info-value">4 min walk</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Chargers</span>
+                                <span class="info-value">Multiple rapid chargers</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Network</span>
+                                <span class="info-value">ChargePlace/Pod Point</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="parking-card">
+                        <h4>Q-Park Deansgate</h4>
+                        <p class="location">Longworth Street, M3 4EQ</p>
+                        <div class="parking-info">
+                            <div class="info-row">
+                                <span class="info-label">Distance</span>
+                                <span class="info-value">3 min walk</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Chargers</span>
+                                <span class="info-value">EV charging available</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Network</span>
+                                <span class="info-value">Q-Park EV</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="parking-card">
+                        <h4>Great Northern Warehouse</h4>
+                        <p class="location">235 Deansgate, M3 4EN</p>
+                        <div class="parking-info">
+                            <div class="info-row">
+                                <span class="info-label">Distance</span>
+                                <span class="info-value">8 min walk</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Chargers</span>
+                                <span class="info-value">7kW - 50kW chargers</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Network</span>
+                                <span class="info-value">GeniePoint/Pod Point</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Amenities Section -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2>Nearby Amenities</h2>
+                <p>Everything you need close to the studio</p>
+            </div>
+
+            <div class="amenities-grid">
+                <div class="amenity-card">
+                    <h4><span class="emoji">☕</span> Coffee & Cafés</h4>
+                    <ul class="amenity-list">
+                        <li><strong>Pret A Manger</strong> <span class="distance">2 min</span></li>
+                        <li><strong>Starbucks Deansgate</strong> <span class="distance">4 min</span></li>
+                        <li><strong>Grindsmith Pod</strong> <span class="distance">5 min</span></li>
+                        <li><strong>Foundation Coffee</strong> <span class="distance">6 min</span></li>
+                    </ul>
+                </div>
+
+                <div class="amenity-card">
+                    <h4><span class="emoji">🍽️</span> Restaurants</h4>
+                    <ul class="amenity-list">
+                        <li><strong>Honest Burgers</strong> <span class="distance">3 min</span></li>
+                        <li><strong>Tattu</strong> <span class="distance">5 min</span></li>
+                        <li><strong>Bills Restaurant</strong> <span class="distance">4 min</span></li>
+                        <li><strong>Yard & Coop</strong> <span class="distance">5 min</span></li>
+                    </ul>
+                </div>
+
+                <div class="amenity-card">
+                    <h4><span class="emoji">🏨</span> Hotels</h4>
+                    <ul class="amenity-list">
+                        <li><strong>King Street Townhouse</strong> <span class="distance">2 min</span></li>
+                        <li><strong>Premier Inn Deansgate</strong> <span class="distance">8 min</span></li>
+                        <li><strong>Hotel Indigo</strong> <span class="distance">10 min</span></li>
+                        <li><strong>Mercure Manchester</strong> <span class="distance">12 min</span></li>
+                    </ul>
+                </div>
+
+                <div class="amenity-card">
+                    <h4><span class="emoji">🚊</span> Tram Stops</h4>
+                    <ul class="amenity-list">
+                        <li><strong>Deansgate-Castlefield</strong> <span class="distance">5 min</span></li>
+                        <li><strong>St Peter's Square</strong> <span class="distance">8 min</span></li>
+                        <li><strong>Piccadilly Gardens</strong> <span class="distance">12 min</span></li>
+                    </ul>
+                </div>
+
+                <div class="amenity-card">
+                    <h4><span class="emoji">🛍️</span> Shopping</h4>
+                    <ul class="amenity-list">
+                        <li><strong>Spinningfields</strong> <span class="distance">3 min</span></li>
+                        <li><strong>Deansgate</strong> <span class="distance">5 min</span></li>
+                        <li><strong>King Street Shops</strong> <span class="distance">2 min</span></li>
+                        <li><strong>House of Fraser</strong> <span class="distance">8 min</span></li>
+                    </ul>
+                </div>
+
+                <div class="amenity-card">
+                    <h4><span class="emoji">🏪</span> Convenience</h4>
+                    <ul class="amenity-list">
+                        <li><strong>Tesco Express</strong> <span class="distance">3 min</span></li>
+                        <li><strong>Sainsbury's Local</strong> <span class="distance">5 min</span></li>
+                        <li><strong>Boots Pharmacy</strong> <span class="distance">4 min</span></li>
+                        <li><strong>WHSmith</strong> <span class="distance">7 min</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Info Section -->
+    <section class="quick-info">
+        <div class="container">
+            <div class="section-header">
+                <h2>Quick Reference</h2>
+                <p>Essential information for your visit</p>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <h4>Contact on Arrival</h4>
+                    <p>If you have any trouble finding us or accessing the building, please call the studio.</p>
+                </div>
+
+                <div class="info-item">
+                    <h4>Building Access</h4>
+                    <p>Use the main entrance at Reedham House. Intercom system available - buzz for Novaro Agency.</p>
+                </div>
+
+                <div class="info-item">
+                    <h4>WiFi Network</h4>
+                    <p><strong>Network:</strong> VM5735368<br>
+                    Password will be shared on arrival</p>
+                </div>
+
+                <div class="info-item">
+                    <h4>Accessibility</h4>
+                    <p>Lift access available. Please let us know in advance if you have specific accessibility requirements.</p>
+                </div>
+
+                <div class="info-item">
+                    <h4>Team's Coffee Pick</h4>
+                    <p><strong>Pot Kettle Black</strong><br>
+                    Barton Arcade - our favorite local spot for great coffee!</p>
+                </div>
+
+                <div class="info-item">
+                    <h4>Visit Novaro</h4>
+                    <p><a href="https://novaro.agency" target="_blank">novaro.agency</a><br>
+                    Learn more about our social commerce services.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Novaro Agency. Part of Embryo Group. <a href="https://novaro.agency" target="_blank">Visit our website</a></p>
+        </div>
+    </footer>
+</body>
+</html>
